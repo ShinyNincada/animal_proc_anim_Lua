@@ -5,11 +5,6 @@ local chain = {}
 chain.count = 50
 
 
-
-function ConstrainDistance(point, anchor, distance) 
-    return ((point - anchor).normalize() * distance) + anchor;
-end
-
 function game:init()
     mainCam:lookAt(0, 0)
 

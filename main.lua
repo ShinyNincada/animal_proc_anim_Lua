@@ -1,8 +1,9 @@
 local loadTimeStart = love.timer.getTime()
-
+TestValue = 100
 require 'globals'
 
 function love.load()
+
     love.window.setIcon(love.image.newImageData(CONFIG.window.icon))
     love.graphics.setDefaultFilter(CONFIG.graphics.filter.down,
                                    CONFIG.graphics.filter.up,
@@ -38,6 +39,8 @@ function ConstrainDistance(point, anchor, distance)
     return {x = constrainedX, y = constrainedY}
 end
 
+
+
 function love.update(dt)
 end
 
@@ -70,7 +73,7 @@ function love.draw()
             "Canvases: " .. stats.canvases,
             "\tSwitches: " .. stats.canvasswitches,
             "Shader switches: " .. stats.shaderswitches,
-            "Fonts: " ,
+            "Fonts: " .. TestValue,
         }
         love.graphics.setFont(CONFIG.debug.stats.font[CONFIG.debug.stats.fontSize])
         for i, text in ipairs(info) do

@@ -174,18 +174,12 @@ function vector:trimInplace(maxLen)
 	return self
 end
 
-function vector:setMag(mag)
-    local angle = heading()
-    self.x = math.cos(angle) * mag
-    self.y = math.sin(angle) * mag
-    return self
-end
-
-function vector:angleTo(other)
-	if other then
-		return atan2(self.y, self.x) - atan2(other.y, other.x)
-	end
-	return atan2(self.y, self.x)
+function angleTo(from, to)
+    local deltaX = to.x - from.x
+    local deltaY = to.y - from.y
+    local angleRadians = math.atan2(deltaY, deltaX)  -- Angle in radians
+    local angleDegrees = math.deg(angleRadians)  -- Convert radians to degrees
+    return angleDegrees
 end
 
 function vector:trimmed(maxLen)
