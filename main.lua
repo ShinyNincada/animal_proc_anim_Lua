@@ -14,6 +14,7 @@ function love.load()
         callbacks[#callbacks+1] = k
     end
 
+
     State.registerEvents(callbacks)
     State.switch(States.game)
 
@@ -24,8 +25,20 @@ function love.load()
     end
 end
 
-function love.update(dt)
+function ConstrainDistance(point, anchor, distance)
+    -- Calculate the vector from the anchor to the point
+    local dx, dy = point.x - anchor.x, point.y - anchor.y
+    -- Calculate the current distance between the point and the anchor
+    local currentDistance = math.sqrt(dx * dx + dy * dy)
+    -- Normalize the vector and scale it by the desired distance
+    local scale = distance / currentDistance
+    local constrainedX = anchor.x + dx * scale
+    local constrainedY = anchor.y + dy * scale
+    -- Return the constrained point
+    return {x = constrainedX, y = constrainedY}
+end
 
+function love.update(dt)
 end
 
 function love.draw()
@@ -57,7 +70,7 @@ function love.draw()
             "Canvases: " .. stats.canvases,
             "\tSwitches: " .. stats.canvasswitches,
             "Shader switches: " .. stats.shaderswitches,
-            "Fonts: " .. stats.fonts,
+            "Fonts: " ,
         }
         love.graphics.setFont(CONFIG.debug.stats.font[CONFIG.debug.stats.fontSize])
         for i, text in ipairs(info) do

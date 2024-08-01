@@ -106,7 +106,7 @@ function vector:len()
 	return sqrt(self.x * self.x + self.y * self.y)
 end
 
-function vector.dist(a, b)
+function dist(a, b)
 	assert(isvector(a) and isvector(b), "dist: wrong argument types (<vector> expected)")
 	local dx = a.x - b.x
 	local dy = a.y - b.y
@@ -172,6 +172,13 @@ function vector:trimInplace(maxLen)
 	s = (s > 1 and 1) or math.sqrt(s)
 	self.x, self.y = self.x * s, self.y * s
 	return self
+end
+
+function vector:setMag(mag)
+    local angle = heading()
+    self.x = math.cos(angle) * mag
+    self.y = math.sin(angle) * mag
+    return self
 end
 
 function vector:angleTo(other)
