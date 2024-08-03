@@ -186,6 +186,9 @@ function vector:trimmed(maxLen)
 	return self:clone():trimInplace(maxLen)
 end
 
+function math.sign(x)
+	return (x >= 0) and 1 or -1
+end
 
 -- the module
 return setmetatable({new = new, isvector = isvector, zero = zero},
