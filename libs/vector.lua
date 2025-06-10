@@ -61,7 +61,7 @@ function vector.__add(a,b)
 end
 
 function vector.__sub(a,b)
-	assert(isvector(a) and isvector(b), "Sub: wrong argument types (<vector> expected)")
+	assert(isvector(a) and isvector(b), "Sub: wrong argument types (<vector> expected)" .. tostring(isvector(a))..tostring(isvector(b)))
 	return new(a.x-b.x, a.y-b.y)
 end
 
@@ -71,7 +71,7 @@ function vector.__mul(a,b)
 	elseif type(b) == "number" then
 		return new(b*a.x, b*a.y)
 	else
-		assert(isvector(a) and isvector(b), "Mul: wrong argument types (<vector> or <number> expected)")
+		assert(isvector(a) and isvector(b), "Mul: wrong argument types (<vector> or <number> expected) "..type(a))
 		return a.x*b.x + a.y*b.y
 	end
 end

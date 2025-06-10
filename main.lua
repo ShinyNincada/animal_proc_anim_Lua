@@ -3,7 +3,6 @@ TestValue = 100
 require 'globals'
 
 function love.load()
-
     love.window.setIcon(love.image.newImageData(CONFIG.window.icon))
     love.graphics.setDefaultFilter(CONFIG.graphics.filter.down,
                                    CONFIG.graphics.filter.up,

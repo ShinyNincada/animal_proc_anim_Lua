@@ -95,8 +95,6 @@ Signal  = require 'libs.signal'
 Inspect = require 'libs.inspect'
 Camera  = require 'libs.camera'
 Timer   = require 'libs.timer'
-Chain = require('libs.Procedural.Chain')
-Snake = require('libs.Procedural.Snake')
 -- Ingame
 mainCam = Camera(0, 0)
 

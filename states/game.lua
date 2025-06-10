@@ -1,11 +1,16 @@
 local game = {}
-local snakeSegments = {12, 20, 20, 16, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1}
+ScreenWidth = 1280               -- The window width (number)
+ScreenHeight = 720
+BlobPoint = require '.libs.Procedural.Softbody.blobpoint'
+Blob = require ".libs.Procedural.Softbody.blob"
+Limb = require ".libs.Procedural.Softbody.limb"
+ThisFrog = require ".libs.Procedural.Softbody.frog"     -- from your previous blob.lua
+-- require "vec2"
 
--- local chain = Chain.new(100, Vector(0,0), 360)
-local chain = Snake.new(16, Vector(0,0), 360)
 function game:init()
     mainCam:lookAt(0, 0)
-    chain:Init(snakeSegments)
+    love.graphics.setBackgroundColor(1,1,1)
+    frog = ThisFrog:new(Vector(400,300))
 end
 
 function game:enter()
@@ -13,7 +18,8 @@ function game:enter()
 end
 
 function game:update(dt)
-    chain:update(dt)
+    local mx, my = love.mouse.getPosition()
+    frog:update(love.graphics.getWidth(), love.graphics.getHeight(), mx, my, love.mouse.isDown(1))
 end
 
 function game:keypressed(key, code)
@@ -25,10 +31,15 @@ function game:mousepressed(x, y, mbutton)
 end
 
 function game:draw()
-    mainCam:attach()
-        chain:draw()
-    mainCam:detach()
+    if mainCam then
+        mainCam:attach()
+    end
 
+    frog:draw()
+    -- Limb:display(frog.position)
+    if mainCam then
+        mainCam:detach()
+    end
 end
 
 

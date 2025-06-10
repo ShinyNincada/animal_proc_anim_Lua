@@ -67,9 +67,9 @@ function Chain:draw()
 	end
 end
 
-function ConstrainDistance(point, anchor, distance) 
-    return ((point - anchor).normalize() * distance) + anchor;
-end
+-- function ConstrainDistance(point, anchor, distance) 
+--     return ((point - anchor).normalize() * distance) + anchor;
+-- end
 
 
 
